@@ -1,0 +1,24 @@
+{
+  "name": "record.io",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rjmackay/record.io"
+  },
+  "keywords": [
+    "webrtc",
+    "video",
+    "recording"
+  ],
+  "author": "Robbie Mackay",
+  "license": "AGPL",
+  "bugs": {
+    "url": "https://github.com/rjmackay/record.io/issues"
+  },
+  "homepage": "https://github.com/rjmackay/record.io"
+}
