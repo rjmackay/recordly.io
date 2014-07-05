@@ -27,7 +27,7 @@ var merge = function(socket, fileName) {
 		mergedFile = __dirname + '/uploads/' + fileName + '-merged.webm';
 
 	new FFmpeg({ source: videoFile })
-		.mergeAdd(audioFile)
+		.addInput(audioFile)
 		.on('error', function(err) {
 			socket.emit('ffmpeg-error', 'ffmpeg : An error occurred: ' + err.message);
 		})
@@ -38,7 +38,7 @@ var merge = function(socket, fileName) {
 			socket.emit('merged', fileName + '-merged.webm');
 			console.log('Merging finished !');
 		})
-		.mergeToFile(mergedFile);
+		.saveToFile(mergedFile);
 };
 
 module.exports = function (io) {
