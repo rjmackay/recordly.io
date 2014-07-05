@@ -29,8 +29,7 @@ var merge = function(socket, fileName) {
 	new FFmpeg({ source: videoFile })
 		.mergeAdd(audioFile)
 		.on('error', function(err) {
-			console.log('An error occurred: ' + err.message);
-			socket.emit('ffmpeg-error', 'ffmpeg : Permission denied, either for ffmpeg or upload location ...');
+			socket.emit('ffmpeg-error', 'ffmpeg : An error occurred: ' + err.message);
 		})
 		.on('progress', function(progress) {
 			socket.emit('ffmpeg-output', progress.percent);
