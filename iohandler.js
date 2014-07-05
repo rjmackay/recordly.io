@@ -56,7 +56,7 @@ module.exports = function (io) {
 
 			// if it is firefox or if user is recording only audio
 			else {
-				socket.emit('merged', fileName);
+				socket.emit('merged', fileName + '.wav');
 			}
 		});
 	});
