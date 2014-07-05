@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+var debug = require('debug')('record.io');
+var server = require('../server')();
+

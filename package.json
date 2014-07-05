@@ -2,7 +2,7 @@
   "name": "record.io",
   "version": "0.0.0",
   "description": "Recording video messages via WebRTC",
-  "main": "index.js",
+  "main": "node ./bin/www",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,6 +23,7 @@
   "homepage": "https://github.com/rjmackay/record.io",
   "dependencies": {
     "compression": "^1.0.8",
+    "debug": "^1.0.2",
     "express": "^4.5.0",
     "fluent-ffmpeg": "^1.7.2",
     "morgan": "^1.1.1",

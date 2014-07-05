@@ -1,7 +1,6 @@
-var
-		fs = require('fs');
+var fs = require('fs');
 
-function writeToDisk(dataURL, fileName) {
+var writeToDisk = function(dataURL, fileName) {
 		var fileExtension = fileName.split('.').pop(),
 				fileRootNameWithBase = './uploads/' + fileName,
 				filePath = fileRootNameWithBase,
@@ -18,16 +17,16 @@ function writeToDisk(dataURL, fileName) {
 		fs.writeFileSync(filePath, fileBuffer);
 
 		console.log('filePath', filePath);
-}
+};
 
-function merge (socket, fileName) {
+var merge = function(socket, fileName) {
 	var FFmpeg = require('fluent-ffmpeg');
 
 	var audioFile = __dirname + '/uploads/' + fileName + '.wav',
 		videoFile = __dirname + '/uploads/' + fileName + '.webm',
 		mergedFile = __dirname + '/uploads/' + fileName + '-merged.webm';
 
-	var command = new FFmpeg({ source: videoFile })
+	new FFmpeg({ source: videoFile })
 		.mergeAdd(audioFile)
 		.on('error', function(err) {
 			console.log('An error occurred: ' + err.message);
@@ -41,9 +40,25 @@ function merge (socket, fileName) {
 			console.log('Merging finished !');
 		})
 		.mergeToFile(mergedFile);
-}
+};
 
-module.exports = {
-	merge : merge,
-	writeToDisk : writeToDisk
+module.exports = function (io) {
+	io.sockets.on('connection', function (socket) {
+		socket.on('message', function (data) {
+			var fileName = Math.round(Math.random() * 99999999) + 99999999;
+
+			writeToDisk(data.audio.dataURL, fileName + '.wav');
+
+			// if it is chrome
+			if(data.video) {
+				writeToDisk(data.video.dataURL, fileName + '.webm');
+				merge(socket, fileName);
+			}
+
+			// if it is firefox or if user is recording only audio
+			else {
+				socket.emit('merged', fileName);
+			}
+		});
+	});
 };
