@@ -169,6 +169,16 @@
 				 });
 			};
 
+			var setProgress = function(result) {
+				if(parseInt(result) >= 100) {
+					progressBar.parentNode.style.display = 'none';
+					return;
+				}
+				progressBar.parentNode.style.display = 'block';
+				progressBar.value = result;
+				percentage.innerHTML = 'Ffmpeg Progress ' + result + "%";
+			}
+
 			socketio.on('merged', function(fileName) {
 				var href = (location.href.split('/').pop().length
 						? location.href.replace( location.href.split('/').pop(), '' )
@@ -179,21 +189,15 @@
 
 				console.log('got file ' + href);
 
+				setProgress(100);
+
 				cameraPreview.src = href
 				cameraPreview.play();
 				cameraPreview.muted = false;
 				cameraPreview.controls = true;
 			});
 
-			socketio.on('ffmpeg-output', function(result) {
-				if(parseInt(result) >= 100) {
-					progressBar.parentNode.style.display = 'none';
-					return;
-				}
-				progressBar.parentNode.style.display = 'block';
-				progressBar.value = result;
-				percentage.innerHTML = 'Ffmpeg Progress ' + result + "%";
-			});
+			socketio.on('ffmpeg-output', setProgress);
 
 			socketio.on('ffmpeg-error', function(error) {
 				alert(error);
