@@ -20,6 +20,8 @@ var cameraPreview  = document.getElementById('camera-preview');
 var progressBar = document.querySelector('#progress-bar');
 var percentage = document.querySelector('#percentage');
 
+var videoLink  = document.getElementById('video-link');
+
 var recordAudio, recordVideo;
 startRecording.onclick = function() {
 	startRecording.disabled = true;
@@ -132,6 +134,8 @@ socketio.on('merged', function(fileName) {
 	cameraPreview.play();
 	cameraPreview.muted = false;
 	cameraPreview.controls = true;
+
+	videoLink.innerHTML = '<a href="'+href+'">'+href+'</a>'
 });
 
 socketio.on('ffmpeg-output', setProgress);
