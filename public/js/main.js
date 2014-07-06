@@ -122,12 +122,7 @@ var setProgress = function(result) {
 }
 
 socketio.on('merged', function(fileName) {
-	var href = (location.href.split('/').pop().length
-			? location.href.replace( location.href.split('/').pop(), '' )
-			: location.href
-		);
-
-	href = href + 'uploads/' + fileName;
+	href = fileName;
 
 	console.log('got file ' + href);
 

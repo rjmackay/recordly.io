@@ -1,4 +1,5 @@
-var fs = require('fs');
+var fs = require('fs'),
+	config = require('./config');
 
 var writeToDisk = function(dataURL, fileName) {
 		var fileExtension = fileName.split('.').pop(),
@@ -19,6 +20,24 @@ var writeToDisk = function(dataURL, fileName) {
 		console.log('filePath', filePath);
 };
 
+var s3upload = function(file, callback) {
+	var knox = require('knox');
+	var client = knox.createClient({
+		key: config.s3.key,
+		secret: config.s3.secret,
+		bucket: config.s3.bucket
+	});
+
+	client.putFile(__dirname + '/uploads/' + file, '/' + file, function (error, response) {
+		if (error) {
+			console.log("S3 Upload error: "+ error);
+		}
+
+		console.log('Uploaded to: ' + response.req.url);
+		callback(response.req.url);
+	});
+};
+
 var merge = function(socket, fileName) {
 	var FFmpeg = require('fluent-ffmpeg');
 
@@ -35,7 +54,15 @@ var merge = function(socket, fileName) {
 			socket.emit('ffmpeg-output', progress.percent);
 		})
 		.on('end', function() {
-			socket.emit('merged', fileName + '-merged.webm');
+			if (config.s3_enabled)
+			{
+				s3upload(fileName + '-merged.webm', function (url) {
+					socket.emit('merged', url);
+				});
+			}
+			else {
+				socket.emit('merged', '/uploads/' + fileName + '-merged.webm');
+			}
 			console.log('Merging finished !');
 		})
 		.saveToFile(mergedFile);
@@ -56,7 +83,7 @@ module.exports = function (io) {
 
 			// if it is firefox or if user is recording only audio
 			else {
-				socket.emit('merged', fileName + '.wav');
+				socket.emit('merged', '/uploads/' + fileName + '.wav');
 			}
 		});
 	});
