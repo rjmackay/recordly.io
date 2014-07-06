@@ -1,4 +1,5 @@
 var fs = require('fs'),
+	uuid = require('node-uuid');
 	config = require('./config');
 
 var writeToDisk = function(dataURL, fileName) {
@@ -51,7 +52,7 @@ var merge = function(socket, fileName) {
 			socket.emit('ffmpeg-error', 'ffmpeg : An error occurred: ' + err.message);
 		})
 		.on('progress', function(progress) {
-			socket.emit('ffmpeg-output', progress.percent);
+			socket.emit('ffmpeg-output', Math.round(progress.percent));
 		})
 		.on('end', function() {
 			if (config.s3_enabled)
@@ -71,8 +72,9 @@ var merge = function(socket, fileName) {
 module.exports = function (io) {
 	io.sockets.on('connection', function (socket) {
 		socket.on('message', function (data) {
-			var fileName = Math.round(Math.random() * 99999999) + 99999999;
+			var fileName = uuid.v4();
 
+			socket.emit('ffmpeg-output', 0);
 			writeToDisk(data.audio.dataURL, fileName + '.wav');
 
 			// if it is chrome
