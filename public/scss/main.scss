@@ -12,12 +12,21 @@
 // Import neat
 @import 'neat';
 
+// Generic .hide class
 .hide {
 	display: none;
 }
 
+// Video element
 .camera-preview {
 	width: 50%;
 	border: 1px solid $blue;
+}
+
+.recording-buttons {
+	// Hide disabled recording buttons
+	button[disabled] {
+		display: none;
+	}
 }
 
