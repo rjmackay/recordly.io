@@ -7,4 +7,12 @@ input[type="submit"] {
   user-select: none;
   vertical-align: middle;
   white-space: nowrap;
+
+  &[disabled] {
+  	background-color: $disabled-button-color;
+  	cursor: auto;
+  	&:hover {
+  		background-color: $disabled-button-color;
+  	}
+  }
 }
