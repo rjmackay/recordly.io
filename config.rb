@@ -2,6 +2,7 @@ require 'compass/import-once/activate'
 # Require any additional compass plugins here.
 add_import_path 'public/bower_components/bourbon/dist'
 add_import_path 'public/bower_components/neat/app/assets/stylesheets'
+add_import_path 'public/bower_components/font-awesome/scss'
 
 # Set this to the root of your project when deployed:
 http_path = "/"

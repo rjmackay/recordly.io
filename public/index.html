@@ -13,22 +13,47 @@
 		<link rel="stylesheet" href="/css/main.css">
 	</head>
 	<body>
-		<h1>recordly.io</h1>
-		<p>
-			<video id="camera-preview" class="camera-preview"></video>
-		</p>
 
-		<div class="hide">
-			<label id="percentage">Ffmpeg Progress 0%</label>
-			<progress id="progress-bar" value=0 max=100></progress><br />
-		</div>
+		<div class="outer">
+			<div class="header">
+				<!-- <i class="fa fa-circle"></i> -->
+				<h1><i class="fa fa-circle"></i><span> recordly.io</span></h1>
+			</div>
 
-		<div>
-			<button id="start-recording" disabled>Start Recording</button>
-			<button id="stop-recording" disabled>Stop Recording</button>
-		</div>
+			<div class="video-wrapper">
+				<div class="video">
+					<video id="camera-preview" class="camera-preview"></video>
 
-		<div id="video-link">
+					<div class="hide">
+						<label id="percentage">Ffmpeg Progress 0%</label>
+						<progress id="progress-bar" value=0 max=100></progress><br />
+					</div>
+
+					<div class="recording-buttons">
+						<button id="start-recording" disabled>Start Recording</button>
+						<button id="stop-recording" disabled>Stop Recording</button>
+					</div>
+
+					<div id="video-link"></div>
+				</div>
+			</div>
+
+			<h3 class="tagline">Record. Publish. Share.</h3>
+
+			<div class="features">
+				<div class="feature">
+					<h3>Tofu 90's cardigan</h3>
+					<p>Skateboard lomo tattooed, actually sartorial fixie direct trade hella salvia. Church-key High Life Tonx bespoke deep v fap. Williamsburg skateboard Banksy PBR&B selvage Helvetica occupy banh mi, craft beer kitsch ennui stumptown street art hella.</p>
+				</div>
+				<div class="feature">
+					<h3>Tofu 90's cardigan</h3>
+					<p>Skateboard lomo tattooed, actually sartorial fixie direct trade hella salvia. Church-key High Life Tonx bespoke deep v fap. Williamsburg skateboard Banksy PBR&B selvage Helvetica occupy banh mi, craft beer kitsch ennui stumptown street art hella.</p>
+				</div>
+				<div class="feature">
+					<h3>Tofu 90's cardigan</h3>
+					<p>Skateboard lomo tattooed, actually sartorial fixie direct trade hella salvia. Church-key High Life Tonx bespoke deep v fap. Williamsburg skateboard Banksy PBR&B selvage Helvetica occupy banh mi, craft beer kitsch ennui stumptown street art hella.</p>
+				</div>
+			</div>
 		</div>
 
 		<script src="/js/main.js"> </script>

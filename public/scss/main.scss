@@ -10,7 +10,13 @@
 @import 'base/base';
 
 // Import neat
+$visual-grid: true;
 @import 'neat';
+
+// Include font-awesome
+$fa-css-prefix: 'fa';
+$fa-font-path: "../bower_components/font-awesome/fonts";
+@import 'font-awesome';
 
 // Generic .hide class
 .hide {
@@ -19,14 +25,118 @@
 
 // Video element
 .camera-preview {
-	width: 50%;
+	height: 250px;
+	width: 100%;
 	border: 1px solid $blue;
+	background: $light-gray;
+
+	/*&:after {
+    @extend .fa;
+		content: $fa-var-user;
+		position: absolute;
+    top: 50%;
+    left: 50%;
+    font-size: 400px;
+    color: $dark-gray;
+    z-index: 1;
+    margin: -200px 0 0 -200px;
+	}*/
 }
 
 .recording-buttons {
+	button {
+		width: 100%;
+		margin: 0 auto;
+	}
 	// Hide disabled recording buttons
 	button[disabled] {
 		display: none;
+	}
+}
+
+.outer {
+	@include outer-container;
+}
+
+.header {
+	@include span-columns(4);
+
+	@include media($medium-screen-up) {
+	  @include span-columns(4);
+	}
+	@include media($large-screen-up) {
+	  @include span-columns(4);
+	}
+
+	h1 {
+		border: 1px solid $dark-gray;
+		border-radius: 2.25em;
+		display: inline-block;
+		padding: 0 0.5em 0 0.1em;
+		margin: 0 0 1em 0;
+	}
+	span {
+		vertical-align:top;
+	}
+	.fa {
+		color: #f66;
+		font-size: 1.25em;
+		padding: 0.2em 0;
+		line-height: 0.7;
+	}
+}
+
+.video-wrapper {
+	@include span-columns(4);
+	@include omega();
+
+	.video {
+		@include fill-parent;
+	}
+
+	@include media($medium-screen-up) {
+	  @include span-columns(4);
+	  @include omega();
+	}
+	@include media($large-screen-up) {
+	  @include span-columns(8);
+	  @include omega();
+
+	  .video {
+			@include span-columns(4 of 8);
+	  	@include shift(2);
+			//margin: 0 auto;
+	  }
+	}
+}
+
+.tagline {
+	@include span-columns(4);
+	margin-top: 1em;
+	margin-bottom: 1em;
+
+	@include media($medium-screen-up) {
+	  @include span-columns(8);
+	}
+	@include media($large-screen-up) {
+	  @include span-columns(12);
+	}
+}
+
+.features {
+	@include outer-container;
+}
+.feature {
+	@include span-columns(4);
+
+	// Have to use medium-large screen to avoid omega() effecting next level too
+	@include media($medium-to-large-screen) {
+	  @include span-columns(4);
+		@include omega(2n);
+	}
+	@include media($large-screen-up) {
+	  @include span-columns(4);
+		@include omega(3n);
 	}
 }
 
