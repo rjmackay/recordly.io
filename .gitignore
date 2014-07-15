@@ -1,3 +1,4 @@
 node_modules/*
 uploads/*
 ffmpeg-output/*
+bower_components/*

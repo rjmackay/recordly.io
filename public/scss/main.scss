@@ -1,0 +1,23 @@
+// Recordly.io SCSS main file
+
+// Compass reset ?
+// @import "compass/reset";
+
+// Import bourbon
+@import 'bourbon';
+
+// Import base from Bitters http://bitters.bourbon.io/
+@import 'base/base';
+
+// Import neat
+@import 'neat';
+
+.hide {
+	display: none;
+}
+
+.camera-preview {
+	width: 50%;
+	border: 1px solid $blue;
+}
+

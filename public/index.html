@@ -14,38 +14,15 @@
 		<script src="/js/RecordRTC.js"> </script>
 		<script src="/socket.io/socket.io.js"></script>
 
-		<style>
-			html { background-color: #f7f7f7; }
-
-			body {
-				background-color: white;
-				border: 1px solid rgb(15, 158, 238);
-				margin: 1% 35%;
-				text-align: center;
-			}
-
-			hr {
-				border: 0;
-				border-top: 1px solid rgb(15, 158, 238);
-			}
-
-			a {
-				color: #2844FA;
-				text-decoration: none;
-			}
-
-			a:hover, a:focus { color: #1B29A4; }
-
-			a:active { color: #000; }
-		</style>
+		<link rel="stylesheet" href="/css/main.css">
 	</head>
 	<body>
 		<h1>recordly.io</h1>
 		<p>
-			<video id="camera-preview" style="border: 1px solid rgb(15, 158, 238); width: 94%;"></video>
+			<video id="camera-preview" class="camera-preview"></video>
 		</p>
 
-		<div style="display:none;">
+		<div class="hide">
 			<label id="percentage">Ffmpeg Progress 0%</label>
 			<progress id="progress-bar" value=0 max=100></progress><br />
 		</div>
