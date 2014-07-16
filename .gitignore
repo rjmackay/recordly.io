@@ -2,3 +2,4 @@ node_modules/*
 uploads/*
 ffmpeg-output/*
 public/bower_components/*
+public/css/*
