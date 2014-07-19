@@ -1,5 +1,5 @@
 var fs = require('fs'),
-	uuid = require('node-uuid');
+	uuid = require('node-uuid'),
 	config = require('./config');
 
 var writeToDisk = function(dataURL, fileName) {
@@ -31,7 +31,7 @@ var s3upload = function(file, callback) {
 
 	client.putFile(__dirname + '/uploads/' + file, '/' + file, function (error, response) {
 		if (error) {
-			console.log("S3 Upload error: "+ error);
+			console.log('S3 Upload error: '+ error);
 		}
 
 		console.log('Uploaded to: ' + response.req.url);

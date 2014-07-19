@@ -1,3 +1,5 @@
+/* jshint unused: false */
+
 var http = require('http'),
 	app = require('./app'),
 	config = require('./config');
