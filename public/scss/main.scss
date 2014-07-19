@@ -23,67 +23,38 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 	display: none;
 }
 
-// Video element
-.camera-preview {
-	height: 250px;
-	width: 100%;
-	border: 1px solid $blue;
-	background: $light-gray;
-
-	/*&:after {
-    @extend .fa;
-		content: $fa-var-user;
-		position: absolute;
-    top: 50%;
-    left: 50%;
-    font-size: 400px;
-    color: $dark-gray;
-    z-index: 1;
-    margin: -200px 0 0 -200px;
-	}*/
-}
-
-.recording-buttons {
-	button {
-		width: 100%;
-		margin: 0 auto;
-	}
-	// Hide disabled recording buttons
-	button[disabled] {
-		display: none;
-	}
-}
-
 .outer {
 	@include outer-container;
 }
 
 .header {
+	text-align: center;
+	margin-top: 0.5em;
 	@include span-columns(4);
 
 	@include media($medium-screen-up) {
 	  @include span-columns(4);
+	  margin-top: 5em;
 	}
 	@include media($large-screen-up) {
 	  @include span-columns(4);
 	}
 
 	h1 {
-		border: 1px solid $dark-gray;
-		border-radius: 2.25em;
-		display: inline-block;
-		padding: 0 0.5em 0 0.1em;
-		margin: 0 0 1em 0;
+		font-weight: 400;
 	}
 	span {
-		vertical-align:top;
+		vertical-align: top;
 	}
 	.fa {
-		color: #f66;
 		font-size: 1.25em;
-		padding: 0.2em 0;
-		line-height: 0.7;
+		padding-top: 0.1em;
 	}
+}
+
+.tagline {
+	margin-bottom: 1em;
+	font-weight: 400;
 }
 
 .video-wrapper {
@@ -110,16 +81,25 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 	}
 }
 
-.tagline {
-	@include span-columns(4);
-	margin-top: 1em;
+// Video element
+.camera-preview {
+	height: 250px;
+	width: 100%;
+	border: 1px solid $blue;
+	background: $light-gray;
+  border-radius: $base-border-radius;
+}
+
+.recording-buttons {
 	margin-bottom: 1em;
 
-	@include media($medium-screen-up) {
-	  @include span-columns(8);
+	button {
+		width: 100%;
+		margin: 0 auto;
 	}
-	@include media($large-screen-up) {
-	  @include span-columns(12);
+	// Hide disabled recording buttons
+	button[disabled] {
+		display: none;
 	}
 }
 

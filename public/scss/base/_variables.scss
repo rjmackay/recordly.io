@@ -1,15 +1,20 @@
 // Typography
-$sans-serif: $helvetica;
-$serif: $georgia;
+$sans-serif: "Open Sans";
+$serif: "Rokkitt";
 $base-font-family: $sans-serif;
-$header-font-family: $base-font-family;
+$header-font-family: "Rokkitt";
+$button-font-family: $base-font-family;
 
 // Sizes
 $base-font-size: 1em;
+$button-font-size: $base-font-size;
 $base-line-height: $base-font-size * 1.5;
 $unitless-line-height: $base-line-height / ($base-line-height * 0 + 1); // Strip units from line-height: https://developer.mozilla.org/en-US/docs/Web/CSS/line-height#Prefer_unitless_numbers_for_line-height_values
 $header-line-height: $base-font-size * 1.25;
 $base-border-radius: em(3);
+
+// Weight
+$button-font-weight: 500;
 
 // Colors
 $blue: #477DCA;
