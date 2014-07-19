@@ -2,7 +2,8 @@ var gulp = require('gulp'),
 	sass = require('gulp-sass'),
 	livereload = require('gulp-livereload'),
 	plumber = require('gulp-plumber'),
-	gutil = require('gulp-util');
+	gutil = require('gulp-util'),
+	jshint = require('gulp-jshint');
 
 function errorHandler (err) {
   gutil.beep();
@@ -30,9 +31,17 @@ gulp.task('sass', function () {
 		.pipe(gulp.dest('./public/css'));
 });
 
+gulp.task('lint', function() {
+	gulp.src(['./public/js/main.js', './*.js'])
+		.pipe(jshint())
+		.pipe(jshint.reporter('default'));
+});
+
 gulp.task('watch', function(){
 	livereload.listen();
-	gulp.watch('./public/scss/**/*.scss', ['sass'])
+	gulp.watch('./public/scss/**/*.scss', ['sass']);
+	gulp.watch(['./public/js/main.js', './*.js'], ['lint']);
+	gulp.watch(['./public/*.html', './public/js/*.js', './public/css/*.css'])
 		.on('change', livereload.changed);
 });
 
