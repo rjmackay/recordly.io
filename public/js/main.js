@@ -1,3 +1,5 @@
+/* global RecordRTC, io */
+
 // you can set it equal to "false" to record only audio
 var recordVideoSeparately = !!navigator.webkitGetUserMedia;
 
@@ -30,7 +32,7 @@ startRecording.onclick = function() {
 			video: true
 		}, function(stream) {
 			mediaStream = stream;
-			recordAudio = RecordRTC(stream, {
+			recordAudio = new RecordRTC(stream, {
 				onAudioProcessStarted: function() {
 					recordVideoSeparately && recordVideo.startRecording();
 
@@ -42,7 +44,7 @@ startRecording.onclick = function() {
 				}
 			});
 
-			recordVideo = RecordRTC(stream, {
+			recordVideo = new RecordRTC(stream, {
 				type: 'video'
 			});
 
@@ -50,7 +52,7 @@ startRecording.onclick = function() {
 
 			stopRecording.disabled = false;
 		}, function(error) {
-			alert( JSON.stringify( error ) );
+			console.log( JSON.stringify( error ) );
 		});
 };
 
@@ -120,22 +122,22 @@ var setProgress = function(result) {
 	}
 	progressBar.parentNode.style.display = 'block';
 	progressBar.value = result;
-	percentage.innerHTML = 'Ffmpeg Progress ' + result + "%";
-}
+	percentage.innerHTML = 'Processing ' + result + '%';
+};
 
 socketio.on('merged', function(fileName) {
-	href = fileName;
+	var href = fileName;
 
 	console.log('got file ' + href);
 
 	setProgress(100);
 
-	cameraPreview.src = href
+	cameraPreview.src = href;
 	cameraPreview.play();
 	cameraPreview.muted = false;
 	cameraPreview.controls = true;
 
-	videoLink.innerHTML = '<a href="'+href+'">'+href+'</a>'
+	videoLink.innerHTML = '<a href="'+href+'">'+href+'</a>';
 });
 
 socketio.on('ffmpeg-output', setProgress);
