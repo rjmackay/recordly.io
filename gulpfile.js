@@ -25,7 +25,7 @@ gulp.task('sass', function () {
 				'public/bower_components/neat/app/assets/stylesheets',
 				'public/bower_components/font-awesome/scss'
 			],
-			outputStyle : 'nested'
+			outputStyle : (process.env.NODE_ENV === 'production') ? 'compressed' : 'nested'
 		}))
 		.pipe(plumber.stop())
 		.pipe(gulp.dest('./public/css'));
