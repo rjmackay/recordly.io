@@ -28,7 +28,7 @@ var videoLink  = document.getElementById('video-link');
 var recordAudio, recordVideo;
 startRecording.onclick = function() {
 	startRecording.disabled = true;
-	startRecording.parentNode.className = "recording-buttons";
+	startRecording.parentNode.className = 'recording-buttons';
 	cameraPreview.className = 'camera-preview';
 	navigator.getUserMedia({
 			audio: true,
@@ -120,10 +120,10 @@ stopRecording.onclick = function() {
 
 var setProgress = function(result) {
 	if(parseInt(result) >= 100) {
-		progressBar.parentNode.className = 'progress hide';
+		progressDiv.className = 'progress hide';
 		return;
 	}
-	progressBar.parentNode.className = 'progress';
+	progressDiv.className = 'progress';
 	progressBar.value = result;
 	percentage.innerHTML = 'Processing ' + result + '%';
 };
@@ -140,7 +140,7 @@ socketio.on('merged', function(fileName) {
 	cameraPreview.muted = false;
 	cameraPreview.controls = true;
 
-	videoLink.className = "";
+	videoLink.className = '';
 	videoLink.value = href;
 });
 
