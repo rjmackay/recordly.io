@@ -19,14 +19,17 @@ var startRecording = document.getElementById('start-recording');
 var stopRecording  = document.getElementById('stop-recording');
 var cameraPreview  = document.getElementById('camera-preview');
 
-var progressBar = document.querySelector('#progress-bar');
-var percentage = document.querySelector('#percentage');
+var progressDiv = document.querySelector('.progress');
+var progressBar = document.querySelector('.progress-bar');
+var percentage = document.querySelector('.progress-percentage');
 
 var videoLink  = document.getElementById('video-link');
 
 var recordAudio, recordVideo;
 startRecording.onclick = function() {
 	startRecording.disabled = true;
+	startRecording.parentNode.className = "recording-buttons";
+	cameraPreview.className = 'camera-preview';
 	navigator.getUserMedia({
 			audio: true,
 			video: true
@@ -57,7 +60,7 @@ startRecording.onclick = function() {
 };
 
 stopRecording.onclick = function() {
-	startRecording.disabled = false;
+	//startRecording.disabled = false;
 	stopRecording.disabled = true;
 
 	// stop audio recorder
@@ -117,10 +120,10 @@ stopRecording.onclick = function() {
 
 var setProgress = function(result) {
 	if(parseInt(result) >= 100) {
-		progressBar.parentNode.style.display = 'none';
+		progressBar.parentNode.className = 'progress hide';
 		return;
 	}
-	progressBar.parentNode.style.display = 'block';
+	progressBar.parentNode.className = 'progress';
 	progressBar.value = result;
 	percentage.innerHTML = 'Processing ' + result + '%';
 };
@@ -137,7 +140,8 @@ socketio.on('merged', function(fileName) {
 	cameraPreview.muted = false;
 	cameraPreview.controls = true;
 
-	videoLink.innerHTML = '<a href="'+href+'">'+href+'</a>';
+	videoLink.className = "";
+	videoLink.value = href;
 });
 
 socketio.on('ffmpeg-output', setProgress);

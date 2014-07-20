@@ -11,8 +11,7 @@
 		<script src="/socket.io/socket.io.js"></script>
 
 		<link rel="stylesheet" href="/css/main.css">
-		<link rel="stylesheet" href="//brick.a.ssl.fastly.net/Rokkitt:100,200,300,400,500,600,700,800,900:f">
-		<link rel="stylesheet" href="//brick.a.ssl.fastly.net/Open Sans:300,300i,400,400i,600,600i,700,700i,900,900i:f">
+		<link rel="stylesheet" href="//brick.a.ssl.fastly.net/Rokkitt:300,400,500,600,700,800,900:f/Open+Sans:300,300i,400,400i,600,600i,700,700i,900,900i:f">
 	</head>
 	<body>
 
@@ -25,19 +24,20 @@
 
 			<div class="video-wrapper">
 				<div class="video">
-					<video id="camera-preview" class="camera-preview"></video>
+					<video id="camera-preview" class="camera-preview hide"></video>
 
-					<div class="hide">
-						<label id="percentage">Ffmpeg Progress 0%</label>
-						<progress id="progress-bar" value=0 max=100></progress><br />
+					<div class="progress hide">
+						<progress class="progress-bar" value=0 max=100>
+							<label class="progress-percentage">Progress 0%</label>
+						</progress>
 					</div>
 
-					<div class="recording-buttons">
-						<button id="start-recording" disabled>Get started <i class="fa fa-arrow-right"></i></button>
+					<div class="recording-buttons init">
+						<button id="start-recording" disabled>Start recording &nbsp; <i class="fa fa-arrow-right"></i></button>
 						<button id="stop-recording" disabled>All done</button>
 					</div>
 
-					<div id="video-link"></div>
+					<input id="video-link" type="text" readonly value="" class="hide" />
 				</div>
 			</div> <!-- /video-wrapper -->
 

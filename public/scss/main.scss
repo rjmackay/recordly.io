@@ -48,6 +48,7 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 	}
 	.fa {
 		font-size: 1.25em;
+		padding-top: 3px;
 	}
 }
 
@@ -62,6 +63,7 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 
 	.video {
 		@include fill-parent;
+		position: relative;
 	}
 
 	@include media($medium-screen-up) {
@@ -90,15 +92,30 @@ $fa-font-path: "../bower_components/font-awesome/fonts";
 }
 
 .recording-buttons {
+	margin-top: 0.25em;
 	margin-bottom: 1em;
 
 	button {
 		width: 100%;
-		margin: 0 auto;
 	}
 	// Hide disabled recording buttons
 	button[disabled] {
 		display: none;
+	}
+
+	@include media($medium-screen-up) {
+		&.init {
+			margin-top: 6em;
+		}
+	}
+}
+
+.progress {
+	.progress-percentage {
+
+	}
+	.progress-bar {
+		width: 100%;
 	}
 }
 
