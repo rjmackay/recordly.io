@@ -6,6 +6,7 @@
 
 1. Get the code `git clone https://github.com/rjmackay/recordly.io.git`
 2. Install dependencies, run `npm install` and `bower install`
+3. Install ffmpeg with `--with-libvpx --with-theora --with-libogg --with-libvorbis`
 3. Build CSS `gulp build`
 4. Start the server `foreman start`
 
