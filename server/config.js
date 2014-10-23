@@ -1,5 +1,5 @@
 exports.port = 8000;
-exports.upload_dir = './uploads';
+exports.upload_dir = require('path').join(__dirname, '..', 'uploads');
 
 exports.s3 = {
   key: process.env.AWS_ACCESS_KEY_ID,

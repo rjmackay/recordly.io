@@ -1,10 +1,11 @@
 var fs = require('fs'),
 	uuid = require('node-uuid'),
+	path = require('path'),
 	config = require('./config');
 
 var writeToDisk = function(dataURL, fileName) {
 		var fileExtension = fileName.split('.').pop(),
-				fileRootNameWithBase = './uploads/' + fileName,
+				fileRootNameWithBase = path.join(config.upload_dir, fileName),
 				filePath = fileRootNameWithBase,
 				fileID = 2,
 				fileBuffer;
@@ -29,7 +30,7 @@ var s3upload = function(file, callback) {
 		bucket: config.s3.bucket
 	});
 
-	client.putFile(__dirname + '/uploads/' + file, '/' + file, function (error, response) {
+	client.putFile(path.join(config.upload_dir, file), '/' + file, function (error, response) {
 		if (error) {
 			console.log('S3 Upload error: '+ error);
 		}
@@ -42,9 +43,9 @@ var s3upload = function(file, callback) {
 var merge = function(socket, fileName) {
 	var FFmpeg = require('fluent-ffmpeg');
 
-	var audioFile = __dirname + '/uploads/' + fileName + '.wav',
-		videoFile = __dirname + '/uploads/' + fileName + '.webm',
-		mergedFile = __dirname + '/uploads/' + fileName + '-merged.webm';
+	var audioFile = path.join(config.upload_dir, fileName) + '.wav',
+		videoFile = path.join(config.upload_dir, fileName) + '.webm',
+		mergedFile = path.join(config.upload_dir, fileName) + '-merged.webm';
 
 	new FFmpeg({ source: videoFile })
 		.addInput(audioFile)
@@ -62,7 +63,7 @@ var merge = function(socket, fileName) {
 				});
 			}
 			else {
-				socket.emit('merged', '/uploads/' + fileName + '-merged.webm');
+				socket.emit('merged', path.join(config.upload_dir, fileName) + '-merged.webm');
 			}
 			console.log('Merging finished !');
 		})
@@ -85,7 +86,7 @@ module.exports = function (io) {
 
 			// if it is firefox or if user is recording only audio
 			else {
-				socket.emit('merged', '/uploads/' + fileName + '.wav');
+				socket.emit('merged', path.join(config.upload_dir, fileName) + '.wav');
 			}
 		});
 	});
