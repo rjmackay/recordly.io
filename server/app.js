@@ -2,15 +2,17 @@ var
 	express = require('express'),
 	serveStatic = require('serve-static'),
 	compression = require('compression'),
-	logger = require('morgan');
+	logger = require('morgan'),
+	path = require('path'),
+	config = require('./config');
 
 var app = express();
 
 app.use(logger('dev'));
 app.use(compression());
-app.use(serveStatic(__dirname + '/public'));
+app.use(serveStatic(path.join(__dirname, '..', 'public')));
 // Serve uploads dir too
-app.use('/uploads', serveStatic(__dirname + '/uploads'));
+app.use('/uploads', serveStatic(config.upload_dir));
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
