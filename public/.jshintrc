@@ -1,22 +1,5 @@
 {
-	"curly": true,
-	"eqeqeq": true,
-	"expr": true,
-	"immed": true,
-	"noarg": true,
-	"onevar": true,
-	"smarttabs": true,
-	"trailing": true,
-	"undef": true,
-	"unused": "vars",
-
+	"extends": "../.jshintrc",
 	"browser" : true,
-	"devel" : true,
-	"newcap": true,
-	"boss" : false,
-	"eqnull" : false,
-	"quotmark" : "single",
-
-	"globals": {
-	}
+	"devel" : true
 }
