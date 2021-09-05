@@ -1,5 +1,5 @@
 {
-	"extends": "../.jshintrc",
+	"extends": "../base.jshintrc",
 	"browser" : true,
 	"devel" : true
 }
